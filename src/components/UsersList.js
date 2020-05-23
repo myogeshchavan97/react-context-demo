@@ -1,19 +1,24 @@
 import React from 'react';
 import UserItem from './UserItem';
+import UserContext from '../context/UserContext';
 
-const UsersList = ({ users, isLoading }) => {
+const UsersList = () => {
   return (
-    <div className="users-list">
-      {isLoading ? (
-        <p className="loading">Loading...</p>
-      ) : (
-        <React.Fragment>
-          {users.map((user, index) => (
-            <UserItem key={index} {...user} />
-          ))}
-        </React.Fragment>
+    <UserContext.Consumer>
+      {({ isLoading, users }) => (
+        <div className="users-list">
+          {isLoading ? (
+            <p className="loading">Loading...</p>
+          ) : (
+            <React.Fragment>
+              {users.map((user, index) => (
+                <UserItem key={index} {...user} />
+              ))}
+            </React.Fragment>
+          )}
+        </div>
       )}
-    </div>
+    </UserContext.Consumer>
   );
 };
 
