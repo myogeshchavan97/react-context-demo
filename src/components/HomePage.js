@@ -6,6 +6,7 @@ import { loadUsers } from '../actions/users';
 import UsersList from './UsersList';
 import Header from './Header';
 import Filters from './Filters';
+import UserContext from '../context/UserContext';
 
 const HomePage = (props) => {
   const [users, setUsers] = useState(props.users);
@@ -54,11 +55,11 @@ const HomePage = (props) => {
   }
 
   return (
-    <React.Fragment>
+    <UserContext.Provider value={{ users, sortOrder, isLoading }}>
       <Header handleSearch={handleSearch} />
-      <Filters handleSort={handleSort} sortOrder={sortOrder} />
-      <UsersList users={users} isLoading={isLoading} />
-    </React.Fragment>
+      <Filters handleSort={handleSort} />
+      <UsersList />
+    </UserContext.Provider>
   );
 };
 

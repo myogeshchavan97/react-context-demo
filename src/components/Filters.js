@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Select from 'react-select';
+import UserContext from '../context/UserContext';
 
-const Filters = ({ handleSort, sortOrder }) => {
+const Filters = ({ handleSort }) => {
+  const { sortOrder } = useContext(UserContext);
   const options = [
     { value: '', label: 'None' },
     { value: 'asc', label: 'Ascending' },

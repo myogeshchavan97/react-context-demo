@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserItem from './UserItem';
+import UserContext from '../context/UserContext';
 
-const UsersList = ({ users, isLoading }) => {
+const UsersList = () => {
+  const { users, isLoading } = useContext(UserContext);
   return (
     <div className="users-list">
       {isLoading ? (
